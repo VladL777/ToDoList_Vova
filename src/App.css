@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-size: x-large;
+  font-family: Arial, Helvetica, sans-serif;
   //border: 1px solid black;
 }
 
@@ -23,6 +24,29 @@ header p {
   font-size: 100px;
 }
 
+.div-task {
+  padding: 1em;
+  border: 1px solid black;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.task-span {
+  width: 100%;
+  padding: 0 1em;
+}
+
+.btn-done, .btn-delete {
+  height: 1em;
+  min-width: 1em;
+}
+
+.div-input input {
+  width: 100%;
+  padding: 0 1em;
+  line-height: 2em;
+}
 
 
 
