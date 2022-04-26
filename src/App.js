@@ -12,8 +12,12 @@ function App() {
 
   const [tasks, setTasks] = useState(Storage.getTasks())
 
-  const delBtnClickHandler = (id) => {
-    setTasks(Storage.deleteTask(id))
+  function DelBtnClick(id) {
+    setTasks(Storage.deleteTask(id));
+  }
+
+  function DoneBtnClick(id) {
+    setTasks(Storage.setTaskDone(id))
   }
 
   const keyEnterPressed = (taskText) => {
@@ -27,7 +31,7 @@ function App() {
        <p>Список Дел</p>
      </header>
      <Input keyEnterPressed={keyEnterPressed}/>
-     <TaskList tasks={tasks} onDelBtnClick={delBtnClickHandler}/>
+     <TaskList tasks={tasks} DoneBtnClick={DoneBtnClick} DelBtnClick={DelBtnClick}/>
     </div>
   );
 }

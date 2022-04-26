@@ -7,12 +7,23 @@ class Storage {
     getTasks() {
         this.tasks = []
         for (let i = 0; i < this.storage.length; i++) {
-            this.tasks.push(
-                {
-                    "id": this.storage.key(i),
-                    "text": JSON.parse(this.storage.getItem(this.storage.key(i))).text
-                }
-            )
+            try {
+                this.tasks.push(
+                    {
+                        "id": this.storage.key(i),
+                        "text": JSON.parse(this.storage.getItem(this.storage.key(i))).text,
+                        "isDone": JSON.parse(this.storage.getItem(this.storage.key(i))).isDone
+                    }
+                )
+            } catch (error) {
+                this.tasks.push(
+                    {
+                        "id": this.storage.key(i),
+                        "text": "Что-то не так с содержимым LocalStorage!!!",
+                        "isDone": JSON.parse(this.storage.getItem(this.storage.key(i))).isDone
+                    }
+                )
+            }
         }
         return this.tasks.sort((a, b) => a.id - b.id)
     }
@@ -24,6 +35,12 @@ class Storage {
 
     deleteTask(id) {
         this.storage.removeItem(id)
+        return this.getTasks()
+    }
+
+    setTaskDone(id) {
+        let taskObj = (JSON.parse(this.storage.getItem(id)))
+        this.storage.setItem(id, JSON.stringify({...taskObj, "isDone": taskObj.isDone == "1" ? '0' : '1'}))
         return this.getTasks()
     }
     
