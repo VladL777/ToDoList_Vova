@@ -1,3 +1,5 @@
+//Класс для работы с LocalStorage
+
 class Storage {
     constructor() {
         this.storage = window.localStorage

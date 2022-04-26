@@ -1,5 +1,4 @@
-import { useState } from 'react'
-
+//Компонент для вывода задач
 
 function TaskList(props) {
 
@@ -16,12 +15,14 @@ function TaskList(props) {
             return (
                 <div className="div-task" key={task.id}>
                     <button 
+                        title="Завершить задачу"
                         className="btn-done"
                         id={task.id}
                         onClick={DoneBtnClick}
                     />
                     <p className="task-span" style={ {textDecoration: task.isDone == "1" ? "line-through" : "none"} } >{task.text}</p>
                     <button 
+                        title="Удалить задачу"
                         id={task.id} 
                         className="btn-delete" 
                         onClick={DelBtnClick}
