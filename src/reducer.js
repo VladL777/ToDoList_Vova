@@ -1,0 +1,49 @@
+
+const initState = {
+    tasks: [
+        // {
+        //     id: 1,
+        //     text: 'Задача номер 1',
+        //     isDone: false
+        // },
+        // {
+        //     id: 2,
+        //     text: 'Задача номер 2',
+        //     isDone: false
+        // },
+        // {
+        //     id: 3,
+        //     text: 'Задача номер 3',
+        //     isDone: false
+        // }
+    ],
+    inputVal: ''
+}
+
+export const reducer = (state = initState, action) => {
+    switch (action.type) {
+        case 'DEL_TASK':
+            let tasks = state.tasks.filter(el => (el.id != action.id))
+            return {...state, tasks: [...tasks]}
+            case 'DONE_TASK':
+                state.tasks.map(el => {
+                    if (el.id == action.id) {
+                        el.isDone == true ? el.isDone = false : el.isDone = true 
+                    }
+                })
+                return {...state, tasks: [...state.tasks]}
+
+            case 'INPUT_VAL_CHANGED':
+                return {...state, inputVal: action.value}
+            case 'ADD_TASK':
+                let id = Date.now()
+                state.tasks.push({
+                    id: id,
+                    text: action.text,
+                    isDone: false
+                })
+                return {...state, tasks: [...state.tasks]}
+        default:
+            return state
+    }
+}

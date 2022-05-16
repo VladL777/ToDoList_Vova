@@ -1,31 +1,28 @@
 //Компонент для вывода задач
+import { useSelector, useDispatch } from 'react-redux';
+import { DEL_TASK, DONE_TASK } from '../actions.js'
 
-function TaskList(props) {
+function TaskList() {
 
-    const DelBtnClick = event => {
-        props.DelBtnClick(event.target.id)
-    }
-
-    const DoneBtnClick = event => {
-        props.DoneBtnClick(event.target.id)
-    }
+    const tasks = useSelector(state => state.tasks)
+    const dispatch = useDispatch()
 
     return (
-        props.tasks.map(task => {
+        tasks.map(task => {
             return (
                 <div className="div-task" key={task.id}>
                     <button 
                         title="Завершить задачу"
                         className="btn-done"
                         id={task.id}
-                        onClick={DoneBtnClick}
+                        onClick={(event) => dispatch(DONE_TASK(event.target.id))}
                     />
                     <p className="task-span" style={ {textDecoration: task.isDone == "1" ? "line-through" : "none"} } >{task.text}</p>
                     <button 
                         title="Удалить задачу"
                         id={task.id} 
                         className="btn-delete" 
-                        onClick={DelBtnClick}
+                        onClick={(event) => dispatch(DEL_TASK(event.target.id))}
                     />
                 </div>
             )

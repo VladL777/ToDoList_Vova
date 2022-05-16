@@ -1,19 +1,17 @@
 //Компонент для ввода задачи
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { INPUT_VAL_CHANGED, ADD_TASK } from "../actions"
 
-const Input = (props) => {
+const Input = () => {
 
-    const [inputVal, setInputVal] = useState('')
-
-    const inputValueChanged = (event) => {
-        setInputVal(event.target.value)
-        console.log(event);
-    }
+    const inputVal = useSelector(state => state.inputVal)
+    const dispatch = useDispatch()
 
     const keyPressed = (event) => {
         if (event.key =='Enter') {
-            props.keyEnterPressed(inputVal)
-            setInputVal('')
+            dispatch(ADD_TASK(event.target.value))
+            dispatch(INPUT_VAL_CHANGED(''))
         }
     }
 
@@ -24,7 +22,7 @@ const Input = (props) => {
                 value={inputVal}
                 autoFocus 
                 placeholder="Введите текст новой задачи и нажмите Enter" 
-                onChange={inputValueChanged}
+                onChange={(event) => dispatch(INPUT_VAL_CHANGED(event.target.value))}
                 onKeyDown={keyPressed}
             />
         </div>
