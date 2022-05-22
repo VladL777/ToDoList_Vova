@@ -72,6 +72,21 @@ header {
   background-size: cover;
 }
 
+.div-info {
+  padding: 1em;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.div-info-filter-buttons button {
+  margin: 0 5px;
+}
+
 
 
 
