@@ -78,9 +78,21 @@ header {
   border: 1px solid black;
   border-radius: 5px;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
   background-color: white;
+}
+
+.div-info-tasks-qnty {
+  flex: 10;
+}
+
+.div-info-filter-buttons {
+  flex: 25;
+  
+}
+.div-info-del-done-button {
+  flex: 20;
 }
 
 .div-info-filter-buttons button {

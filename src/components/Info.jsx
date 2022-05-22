@@ -18,15 +18,17 @@ const Info = () => {
 
     return (
         <div className="div-info">
-            <p>Задач: {actTasksQnty('ACT')}</p>
+            <div className="div-info-tasks-qnty">
+                <p>Задач: {actTasksQnty('ACT')}</p>
+            </div>
             <div className="div-info-filter-buttons">
                 <button onClick={() => dispatch(CHANGE_FILTER('ALL'))}>Все</button>
                 <button onClick={() => dispatch(CHANGE_FILTER('ACT'))}>Текущие</button>
                 <button onClick={() => dispatch(CHANGE_FILTER('DONE'))}>Завершенные</button>
             </div>
             <div className="div-info-del-done-button">
-                <button onClick={() => dispatch(DEL_DONE_TASK())}>Удалить завершенные</button>
-                <span>[{actTasksQnty('DONE')}]</span>
+                <button onClick={() => dispatch(DEL_DONE_TASK())} style={ {display: actTasksQnty('DONE') > 0 ? '' : 'none'} }>Удалить завершенные</button>
+                <span style={ {display: actTasksQnty('DONE') > 0 ? '' : 'none'} }>[{actTasksQnty('DONE')}]</span>
             </div>
         </div>
     )
